@@ -19,9 +19,9 @@ resource "aws_acm_certificate" "cert" {
 
   tags = local.common_tags
 
-  lifecycle {
-    create_before_destroy = true
-  }
+  #   lifecycle {
+  #     create_before_destroy = true
+  #   }
 }
 
 resource "aws_route53_record" "cert_validation" {
