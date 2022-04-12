@@ -18,6 +18,11 @@ provider "aws" {
   region = "eu-west-1"
 }
 
+provider "aws" {
+  alias  = "us-east-1"
+  region = "us-east-1"
+}
+
 locals {
   prefix = "${var.prefix}-${terraform.workspace}"
   common_tags = {
