@@ -8,10 +8,11 @@ stages:
   - Test and Lint
   - Build and Push
   - Staging Plan
+  - Destroy
   - Staging Apply
   - Production Plan
   - Production Apply
-  - Destroy
+  # - Destroy
 
 Test and Lint:
   image: docker:19.03.5
