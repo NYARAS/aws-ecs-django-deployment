@@ -4,16 +4,18 @@ data "aws_route53_zone" "zone" {
 
 resource "aws_route53_record" "app" {
   zone_id = data.aws_route53_zone.zone.zone_id
-  name    = "${lookup(var.subdomain, terraform.workspace)}.${data.aws_route53_zone.zone.name}"
-  type    = "CNAME"
-  ttl     = "300"
+  #   name    = "${lookup(var.subdomain, terraform.workspace)}.${data.aws_route53_zone.zone.name}"
+  name = var.endpoint
+  type = "CNAME"
+  ttl  = "300"
 
   records = [aws_lb.api.dns_name]
 }
-
 resource "aws_acm_certificate" "cert" {
-  domain_name       = aws_route53_record.app.fqdn
-  validation_method = "DNS"
+  provider                  = aws.us-east-1
+  domain_name               = var.domain_name
+  subject_alternative_names = ["*.${var.domain_name}"]
+  validation_method         = "DNS"
 
   tags = local.common_tags
 
