@@ -19,8 +19,8 @@ provider "aws" {
 }
 
 provider "aws" {
-  alias  = "us-east-1"
-  region = "us-east-1"
+  alias  = "us-east-1" # reason for alias 'us-east-1' is due to issue with provider configurations when you change or rename them
+  region = "eu-west-1"
 }
 
 locals {
